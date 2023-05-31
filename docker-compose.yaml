@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  pdf-reader:
+    container_name: pdf-reader
+    stdin_open: true
+    tty: true
+    build:
+      context: .
+    volumes:
+      - .:/app

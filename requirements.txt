@@ -1,0 +1,6 @@
+PyPDF2
+numpy
+pdf2image
+opencv-python
+pyzbar
+pytest

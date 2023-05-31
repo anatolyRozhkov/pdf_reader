@@ -1,0 +1,36 @@
+# START CONTAINER WITH TASK SOLUTION
+docker-compose up
+docker exec -it pdf-reader bash
+
+IN THE CONTAINER
+/app# python3
+>>> from pdf_to_dict import ValidatePDF
+>>> pdf = ValidatePDF('your-pdf.pdf')
+
+CONTAINER
+Container has access to the docker-compose dir,
+so feel free to add any files to that dir and
+play around with them.
+
+READ PDF AS DICT
+>>> print(pdf.result_dict)
+
+RUN TESTS ON PDF
+>>> pytest -vs --tb short --pdf-path 'flight-ticket-or-something.pdf'
+
+RUN TESTS ON CORRUPTED PDFS
+pytest -vs --tb short --pdf-path 'overwriten-text.pdf'
+
+NOTE
+tests do react on changes to PDF structure/fields
+tho some results are a bit unexpected, like with
+overwriten-text.pdf that caused pdf_to_dict to lose
+its ability to cherry pick values, it still raised an error,
+so no hard feelings! :)
+
+PS
+tests support print() statements, so feel free
+to add them at any point you want, to see
+what's happening under the hood.
+
+Cheers!
